@@ -1,0 +1,9 @@
+<RCC>
+    <qresource prefix="/">
+        <file>res/computer.png</file>
+        <file>res/cpu.png</file>
+        <file>res/system-tool.png</file>
+        <file>res/tool.png</file>
+        <file>res/memory.png</file>
+    </qresource>
+</RCC>
