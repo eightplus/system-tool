@@ -47,7 +47,7 @@ private:
     QVBoxLayout *m_vLayout = nullptr;
     QFrame *m_widget = nullptr;
     MyWidget *m_computerWidget = nullptr;
-    MyWidget *m_cpuWidget = nullptr;
+    MyWidget *m_fileSysWidget = nullptr;
     MyWidget *m_memoryWidget = nullptr;
     MyWorker *m_myWorker = nullptr;
 };

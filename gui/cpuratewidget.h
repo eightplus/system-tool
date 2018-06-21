@@ -17,21 +17,32 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "maindialog.h"
+#ifndef CPURATEWIDGET_H
+#define CPURATEWIDGET_H
 
-#include <QApplication>
-#include <QDebug>
+#include <QWidget>
+#include <QTimer>
 
-int main(int argc, char *argv[])
+class QGraphicsDropShadowEffect;
+
+class CpuRateWidget : public QWidget
 {
-    QApplication app(argc, argv);
+    Q_OBJECT
 
-    /*const gchar *root_dir = g_getenv("SNAP") ? g_getenv("SNAP") : "/";
-    gchar *locale_dir  = g_strconcat(root_dir, DATADIR, "locale", NULL);
-    g_free(locale_dir);*/
+public:
+    CpuRateWidget(QWidget *parent = 0);
+    ~CpuRateWidget();
 
-    MainDialog f;
-    f.show();
+    void updateCpuPercent(double value);
 
-    return app.exec();
-}
+protected:
+    void paintEvent(QPaintEvent *event) Q_DECL_OVERRIDE;
+
+private:
+    QGraphicsDropShadowEffect *m_shadowEffect = nullptr;
+    QString m_progressText;
+    double m_prevPercentValue;
+    double m_percentValue;
+};
+
+#endif // CPURATEWIDGET_H

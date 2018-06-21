@@ -4,6 +4,7 @@ TEMPLATE = app
 QT += widgets gui dbus
 
 CONFIG += c++11 link_pkgconfig
+PKGCONFIG += libgtop-2.0
 
 #QMAKE_CXXFLAGS += -fpermissive
 QMAKE_CPPFLAGS *= $(shell dpkg-buildflags --get CPPFLAGS)
@@ -28,6 +29,13 @@ HEADERS += \
     maindialog.h \
     basewidget.h \
     infowidget.h \
+    filesyswidget.h \
+    filesystemlistwidget.h \
+    filesystemlistitem.h \
+    filesystemworker.h \
+    filesystemdata.h \
+    cpuwidget.h \
+    cpuratewidget.h \
     mywidget.h \
     myworker.h \
     myitem.h \
@@ -39,6 +47,13 @@ SOURCES += \
     maindialog.cpp \
     basewidget.cpp \
     infowidget.cpp \
+    filesyswidget.cpp \
+    filesystemlistwidget.cpp \
+    filesystemlistitem.cpp \
+    filesystemworker.cpp \
+    filesystemdata.cpp \
+    cpuwidget.cpp \
+    cpuratewidget.cpp \
     mywidget.cpp \
     myworker.cpp \
     myitem.cpp \

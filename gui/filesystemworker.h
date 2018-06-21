@@ -17,21 +17,34 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "maindialog.h"
+#ifndef FILESYSTEMWORKER_H
+#define FILESYSTEMWORKER_H
 
-#include <QApplication>
-#include <QDebug>
+#include <QObject>
+#include <QMap>
 
-int main(int argc, char *argv[])
+#include "filesystemdata.h"
+
+class FileSystemWorker : public QObject
 {
-    QApplication app(argc, argv);
+    Q_OBJECT
 
-    /*const gchar *root_dir = g_getenv("SNAP") ? g_getenv("SNAP") : "/";
-    gchar *locale_dir  = g_strconcat(root_dir, DATADIR, "locale", NULL);
-    g_free(locale_dir);*/
+public:
+    explicit FileSystemWorker(QObject *parent = 0);
+    ~FileSystemWorker();
 
-    MainDialog f;
-    f.show();
+    FileSystemData *getDiskInfo(const QString &devname);
+    QList<FileSystemData *> diskInfoList() const;
+    void addDiskInfo(const QString &devname, FileSystemData *info);
+    void removeDiskInfo(const QString &devname);
+    bool isDeviceContains(const QString &devname);
 
-    return app.exec();
-}
+public slots:
+    void onFileSystemListChanged();
+
+private:
+    QMap<QString, FileSystemData *> m_diskInfoList;
+};
+
+#endif // FILESYSTEMWORKER_H
+

@@ -18,6 +18,16 @@ target.path = /usr/bin
 INSTALLS += target
 
 unix {
+service.files = $$PWD/conf/org.freedesktop.systemtool.service
+service.path = $${PREFIX}/share/dbus-1/system-services/
+
+dbus.files = $$PWD/conf/org.freedesktop.systemtool.conf
+dbus.path = /etc/dbus-1/system.d/
+
+INSTALLS += service dbus
+}
+
+unix {
     MOC_DIR = .moc
     OBJECTS_DIR = .obj
 }

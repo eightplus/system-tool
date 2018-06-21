@@ -21,8 +21,12 @@
 #define MAINDIALOG_H
 
 #include <QDialog>
+#include <QWidget>
+#include <QStackedLayout>
 
+class CpuWidget;
 class InfoWidget;
+class FileSysWidget;
 
 class MainDialog : public QDialog
 {
@@ -36,7 +40,14 @@ private:
     void keyPressEvent(QKeyEvent *e);
 
 private:
+    CpuWidget *m_cpuWidget = nullptr;
     InfoWidget *m_infoWidget = nullptr;
+    FileSysWidget *m_fileSysWidget = nullptr;
+    QPushButton *m_cpuBtn = nullptr;
+    QPushButton *m_fsBtn = nullptr;
+    QPushButton *m_infoBtn = nullptr;
+    QWidget *m_displayFrame = nullptr;
+    QStackedLayout *m_stackLayout = nullptr;
 };
 
 #endif // MAINDIALOG_H

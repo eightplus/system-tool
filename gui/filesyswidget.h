@@ -17,21 +17,35 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "maindialog.h"
+#ifndef FILESYSWIDGET_H
+#define FILESYSWIDGET_H
 
-#include <QApplication>
-#include <QDebug>
+#include <QMap>
+#include <QVBoxLayout>
+#include <QPushButton>
 
-int main(int argc, char *argv[])
+class FileSystemWorker;
+class FileSystemListWidget;
+
+class FileSysWidget : public QWidget
 {
-    QApplication app(argc, argv);
+    Q_OBJECT
 
-    /*const gchar *root_dir = g_getenv("SNAP") ? g_getenv("SNAP") : "/";
-    gchar *locale_dir  = g_strconcat(root_dir, DATADIR, "locale", NULL);
-    g_free(locale_dir);*/
+public:
+    explicit FileSysWidget(QWidget *widget);
+    ~FileSysWidget();
 
-    MainDialog f;
-    f.show();
+    void initWidgets();
+    void initData();
+    void initConnect();
 
-    return app.exec();
-}
+    void refreshFileSysList();
+
+private:
+    QPushButton *m_refreshBtn = nullptr;
+    QVBoxLayout *m_vLayout = nullptr;
+    FileSystemWorker *m_fileSystemWorker = nullptr;
+    FileSystemListWidget *m_fileSysListWidget = nullptr;
+};
+
+#endif // FILESYSWIDGET_H

@@ -24,7 +24,6 @@
 #include "utils.h"
 
 #include <QApplication>
-#include <QVBoxLayout>
 #include <QDebug>
 
 InfoWidget::InfoWidget(MainDialog *frame)
@@ -38,10 +37,11 @@ InfoWidget::InfoWidget(MainDialog *frame)
 //    setIcon(":/res/tool.png");
 
     m_refreshBtn->setText(tr("Refresh"));
+    m_refreshBtn->setFixedWidth(200);
     m_vLayout->setSpacing(30);
     m_vLayout->setMargin(0);
     m_vLayout->addSpacing(10);
-    m_vLayout->addWidget(m_refreshBtn);
+    m_vLayout->addWidget(m_refreshBtn, 0, Qt::AlignHCenter);
     m_vLayout->addSpacing(20);
 
     this->initWidgets();
@@ -54,7 +54,7 @@ InfoWidget::InfoWidget(MainDialog *frame)
 InfoWidget::~InfoWidget()
 {
 //    m_computerWidget->deleteLater();
-//    m_cpuWidget->deleteLater();
+//    m_fileSysWidget->deleteLater();
 //    m_memoryWidget->deleteLater();
 
     delete m_myWorker;//m_myWorker->deleteLater();
@@ -62,9 +62,9 @@ InfoWidget::~InfoWidget()
         delete m_computerWidget;
         m_computerWidget = 0;
     }
-    if (m_cpuWidget) {
-        delete m_cpuWidget;
-        m_cpuWidget = 0;
+    if (m_fileSysWidget) {
+        delete m_fileSysWidget;
+        m_fileSysWidget = 0;
     }
     if (m_memoryWidget) {
         delete m_memoryWidget;
@@ -81,8 +81,8 @@ void InfoWidget::initWidgets()
     m_vLayout->insertWidget(0, m_computerWidget);
 
 
-    m_cpuWidget = new MyWidget(tr("CPU"), ":/res/cpu.png", this);
-    m_vLayout->insertWidget(1, m_cpuWidget);
+    m_fileSysWidget = new MyWidget(tr("CPU"), ":/res/cpu.png", this);
+    m_vLayout->insertWidget(1, m_fileSysWidget);
 
     m_memoryWidget = new MyWidget(tr("Memory"), ":/res/memory.png", this);
     m_vLayout->insertWidget(2, m_memoryWidget);
@@ -112,7 +112,7 @@ void InfoWidget::initConnect()
             break;
         case SystemInfoID::CPU_INFO:
             for (it = values.begin(); it != values.end(); ++it) {
-                m_cpuWidget->addOneInfoItem(it.key(), it.value());
+                m_fileSysWidget->addOneInfoItem(it.key(), it.value());
             }
             break;
         case SystemInfoID::MEMORY_INFO:

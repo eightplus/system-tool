@@ -1,4 +1,4 @@
 [D-BUS Service]
 Name=org.freedesktop.systemtool
-Exec=/usr/bin/system-tool-daemon
+Exec=desktop-launch system-tool-daemon
 User=root

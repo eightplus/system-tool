@@ -22,7 +22,6 @@
 #include <QVBoxLayout>
 #include <QPushButton>
 #include <QResizeEvent>
-#include <QTimer>
 #include <QDebug>
 #include <QScroller>
 #include <QScrollBar>
