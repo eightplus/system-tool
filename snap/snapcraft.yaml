@@ -12,7 +12,7 @@ grade: stable
 confinement: strict
 
 #plugs:
-slots:
+#slots:
   # Depending on in which environment we're running we either need
   # to use the system or session DBus so we also need to have one
   # slot for each.
@@ -21,17 +21,17 @@ slots:
 #    bus: session
 #    name: org.freedesktop.systemtool
 #    service: true
-  dbus-system:
-    interface: dbus
-    bus: system
-    name: org.freedesktop.systemtool
-    service: true
+#  dbus-system:
+#    interface: dbus
+#    bus: system
+#    name: org.freedesktop.systemtool
+#    service: true
 
 apps:
   system-tool:
     command: desktop-launch system-tool
     plugs: [home, unity7, desktop, desktop-legacy, x11, network, network-bind]
-    slots: [dbus-system]
+#    slots: [dbus-system]
 #    slots:
 #      - dbus-system
 #      - dbus-session
