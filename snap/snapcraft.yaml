@@ -1,54 +1,60 @@
 name: system-tool
-version: '1.0.0'
+version: '1.0.2'
 summary: View the system information
+icon: snap/gui/system-tool.png
 description: |
   System information viewing tool with Qt5, divided into DBUS background
   and GUI front.
 
   Features currently included:
    * Detecting and displaying general system information
+   * Add system dbus plug and slot
 
-grade: stable
-confinement: strict
+#grade: stable
+#confinement: strict
+grade: devel
+confinement: devmode
 
-#plugs:
-#slots:
+plugs:
   # Depending on in which environment we're running we either need
   # to use the system or session DBus so we also need to have one
   # slot for each.
-#  dbus-session:
-#    interface: dbus
-#    bus: session
-#    name: org.freedesktop.systemtool
-#    service: true
-#  dbus-system:
-#    interface: dbus
-#    bus: system
-#    name: org.freedesktop.systemtool
-#    service: true
+  daemon-plug:
+    interface: dbus
+    bus: system
+    name: org.freedesktop.systemtool
+
+slots:
+  dameon-slot:
+    interface: dbus
+    bus: system
+    name: org.freedesktop.systemtool
+    #service: true
 
 apps:
   system-tool:
     command: desktop-launch system-tool
-    plugs: [home, unity7, desktop, desktop-legacy, x11, network, network-bind]
-#    slots: [dbus-system]
-#    slots:
-#      - dbus-system
-#      - dbus-session
+    #desktop: ${SNAP}/meta/gui/system-tool.desktop
+    plugs: [home, unity7, desktop, desktop-legacy, x11, network, network-bind, daemon-plug]
 
-#  system-tool-daemon:
-#    command: bin/system-tool-daemon
-#    plugs: [home, unity7, desktop, desktop-legacy, x11, network, network-bind]
-#    slots:
-#      - dbus-system
-#      - dbus-session
+  system-tool-daemon:
+    command: desktop-launch system-tool-daemon
+    plugs:
+      - home
+      - unity7
+      - desktop
+      - desktop-legacy
+      - network
+      - network-bind
+    slots:
+      - daemon-slot
 
 parts:
   system-tool:
     plugin: qmake
-    source: .
+    source: ./ui
     qt-version: qt5
-    project-files: [system-tool.pro]
+    project-files: [ui.pro]
     build-packages:
       - g++
       - qtbase5-dev
@@ -63,6 +69,24 @@ parts:
       - libqt5gui5
       - libqt5widgets5
       - libstdc++6
-      - dmidecode
       - libgtop-2.0-10
+    after: [desktop-qt5]
+
+  system-tool-daemon:
+    plugin: qmake
+    source: ./daemon
+    qt-version: qt5
+    project-files: [daemon.pro]
+    build-packages:
+      - g++
+      - qtbase5-dev
+      - qt5-qmake
+      - qtscript5-dev
+      - qttools5-dev-tools
+      - pkg-config
+    stage-packages:
+      - libqt5core5a
+      - libqt5dbus5
+      - libstdc++6
+      - dmidecode
     after: [desktop-qt5]
