@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=System Tool
+Name[zh_CN]=系统工具
+Comment=A Viewing tool front-end
+Comment[zh_CN]=系统工具
+GenericName=System Tool
+GenericName[zh_CN]=系统工具
+Exec=system-tool %u
+Icon=system-tool.png
+Type=Application
+Categories=Qt;KDE;System;Viewer;
+Keywords=kde;qt;
+X-Ayatana-Desktop-Shortcuts=Screen;Window

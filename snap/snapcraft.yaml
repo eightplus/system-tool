@@ -1,7 +1,7 @@
 name: system-tool
 version: '1.0.2'
 summary: View the system information
-icon: snap/gui/system-tool.png
+#icon: snap/gui/system-tool.png
 description: |
   System information viewing tool with Qt5, divided into DBUS background
   and GUI front.
@@ -33,7 +33,7 @@ slots:
 
 apps:
   system-tool:
-    command: desktop-launch system-tool
+    command: desktop-launch $SNAP/usr/bin/system-tool
     #desktop: ${SNAP}/meta/gui/system-tool.desktop
     plugs: [home, unity7, desktop, desktop-legacy, x11, network, network-bind, daemon-plug]
 
@@ -53,9 +53,12 @@ parts:
   system-tool:
     plugin: qmake
     source: ./ui
+    #source: https://github.com/eightplus/system-tool.git
+    #source-branch: release
     qt-version: qt5
     project-files: [ui.pro]
     build-packages:
+      - build-essential
       - g++
       - qtbase5-dev
       - qt5-qmake

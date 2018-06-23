@@ -56,3 +56,15 @@ https://github.com/snapcore/snapd/wiki/Interfaces#dbus
 https://forum.snapcraft.io/t/how-do-i-connect-a-snap-to-dbus/1533
 
 https://github.com/snapcore/snapd/pull/2592
+
+https://blog.csdn.net/tq08g2z/article/details/78685011
+
+https://www.2cto.com/kf/201607/528337.html
+
+https://blog.csdn.net/ubuntutouch/article/details/51886345
+
+https://blog.csdn.net/ubuntutouch/article/details/51953272
+
+https://www.msweet.org/blog/2018-01-23-snaps-and-gui-apps.html
+
+https://github.com/ubuntu/snappy-playpen

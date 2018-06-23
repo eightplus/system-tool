@@ -16,9 +16,17 @@ QMAKE_LFLAGS   *= $(shell dpkg-buildflags --get LDFLAGS)
 #PKGCONFIG += glib-2.0 gobject-2.0
 #LIBS += -ldl -lpthread
 
-target.source += $$TARGET
+inst1.files += res/system-tool.png
+inst1.path = /usr/share/pixmaps
+inst2.files += ../system-tool.desktop
+inst2.path = /usr/share/applications
+target.source  += $$TARGET
 target.path = /usr/bin
-INSTALLS += target
+#INSTALLS += target
+INSTALLS += inst1 \
+    inst2 \
+    target
+
 
 unix {
     MOC_DIR = .moc
